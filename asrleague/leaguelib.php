@@ -263,7 +263,7 @@ function calculate_room($event_id, $division) {
             if (!isset($losses[$loser_id][$winner_id])) { $losses[$loser_id][$winner_id] = 0; }
             $numwins = $wins[$winner_id][$loser_id];
             $numlosses = $losses[$loser_id][$winner_id];
-            //echo "wins: " . $numwins . " -- id: " . $winner_id . "<br>\n"; //checkpoint
+           //echo "wins: " . $numwins . " -- id: " . $winner_id . "<br>\n"; //checkpoint
 
             // to add score based on howmany wins or losses they have 
             if (!isset($score[$winner_id])) { $score[$winner_id] = 0; }
@@ -285,6 +285,21 @@ function calculate_room($event_id, $division) {
             // Once points_per_win/points_per_loss are exhausted games will simply not add points.
         } // if there aren't too many matches between these two already.
     } // for every game remaining in the filter.
+
+   $num_active=0;
+   foreach ($participants as $pk => $p) {//add nwins nlosses and active to participants and count actives
+	$win_p=array_sum($wins[strtolower($p['kgsname'])]);
+	$loss_p=array_sum($losses[strtolower($p['kgsname'])]);
+	$p_is_active=0;
+	if (($win_p +$loss_p) >3){
+		$p_is_active=1;
+		$num_active +=1;
+	}
+	$participants[$pk]['nwins']=$win_p;
+	$participants[$pk]['nlosses']=$loss_p;
+	$participants[$pk]['active']= $p_is_active;
+   }
+
 
     // add score to participants (nasty double loop!)
     foreach ($participants as $pk => $p) {
@@ -330,6 +345,9 @@ function calculate_room($event_id, $division) {
     foreach ($games as $fg) {
         $out['games'][] = $fg['id'];
     }
+
+   // add $out['num_active'] (numberof actives players)
+   $out['num_active'] = $num_active;
 
     return $out;
 }
