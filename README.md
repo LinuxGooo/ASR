@@ -26,7 +26,7 @@ For instance try www.advancedstudyroom.org/asrleague/archive.php
   - **league.php**: Display league results
   - **event.php**: main admins tool. Display list of events and allow admins to add user or assign player to a division.
   - **rooms.php**: edit rooms (divisions) of an event.
-  - **cachelib.php**: a yet failed attempt to cache the results.
+  - **cachelib.php**: cache the results.
   - all ***-iframe.php**: are just some display adapts from original file to help iframing inside wordpress page.
   - **action.php**: downlod a game to the server and ad pull request for the scraper.
   - **wplib.php**: allow this app to check wordpress roles and capabilitys.
