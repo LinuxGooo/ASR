@@ -73,7 +73,7 @@ function calculate_room($event_id, $division) {
   // Get all participants.
   $participants = DB::query("SELECT * FROM participants WHERE eid=%i AND division=%s;", $event_id, $division);
 
-  if ($debug) echo "0. Participants: " . count($participants) . "\n<br>";
+//  if ($debug) echo "0. Participants: " . count($participants) . "\n<br>";
 
   //
   // 1.

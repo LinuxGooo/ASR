@@ -129,9 +129,9 @@ foreach ($rooms as $r) {
     echo '">';
     echo '<h3>' . $r['room_name'] . '</h3>';
 
-    $room_calc_out = calculate_room($event_id, $r['room_name']);
+//    $room_calc_out = calculate_room($event_id, $r['room_name']);
 // we don't calculate room every click but get those from cache
-//$room_calc_out=uncache_results($event_id,$r['room_name'] );
+$room_calc_out=uncache_results($event_id,$r['room_name'] );
     echo matches_played($room_calc_out);
     echo display_room($room_calc_out);
 

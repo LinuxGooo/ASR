@@ -122,8 +122,8 @@ foreach ($rooms as $r) {
     echo '<h3>' . $r['room_name'] . '</h3>';
 
 // we don't calculate results every time but just get them from cache
-    $room_calc_out = calculate_room($event_id, $r['room_name']);
-//$room_calc_out = uncache_results($event_id,$r['room_name']);
+//    $room_calc_out = calculate_room($event_id, $r['room_name']);
+$room_calc_out = uncache_results($event_id,$r['room_name']);
     echo matches_played($room_calc_out);
     echo display_room($room_calc_out);
 
