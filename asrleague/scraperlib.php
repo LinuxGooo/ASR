@@ -8,11 +8,13 @@
 
 // Gives you the next kgsname to scrape.
 function scraper_find_next_player($event_id) {
+    $row = DB::queryFirstRow("SELECT * FROM participants WHERE eid=%i AND scrape_priority > %i", $event_id, 1);
+    if (count($row) == 0) {
     $row = DB::queryFirstRow("SELECT * FROM participants WHERE eid=%i AND scrape_priority > %i", $event_id, 0);
     if (count($row) == 0) {
         DB::query("UPDATE participants SET scrape_priority=1 WHERE eid=%i", $event_id);
         $row = DB::queryFirstRow("SELECT * FROM participants WHERE eid=%i AND scrape_priority > %i", $event_id, 0);
-    }
+    }}
     return $row;
 }
 
