@@ -76,7 +76,7 @@ echo '<br />'.$ignored .' particpants were inactive and were not added to the ne
 
 echo '<br />'. $res;
 $query .= " ON DUPLICATE KEY UPDATE division = division ";
-
+cache_all_results($new_event_id);
 //echo $query;
 
 DB::query($query);
