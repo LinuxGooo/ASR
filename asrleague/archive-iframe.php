@@ -51,8 +51,8 @@ else{
 $link="javascript:window.top.change_iframe(" . $game['id'] . ");";
             $t .= '<tr>'."\n";
             $t .= '<td>'. date("Y-m-d H:i", strtotime($game['date'])) . '</td>'."\n";
-            $t .= '<td>' . $game['player_white'] . '</td>'."\n";
-            $t .= '<td>' . $game['player_black'] . '</td>'."\n";
+            $t .= '<td>' . user_profile_link( $game['player_white']) . '</td>'."\n";
+            $t .= '<td>' . user_profile_link($game['player_black']) . '</td>'."\n";
             $t .= '<td>' .' <a href="'.$link .'">'. $game['result'] . '</a></td>'."\n";
             $t .= '</tr>';
           }

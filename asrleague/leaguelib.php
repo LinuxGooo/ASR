@@ -49,7 +49,7 @@ function display_room($room_calc_out) {
   }
   $out .= "</thead><tbody>"; // no <br> here.
   foreach ($participants as $rk => $row) {
-    $out .= '<tr><td class="table-league-highlight">' . ($rk+1) . ". " . $row['kgsname'] . /* " (" . $row['uid'] . ')' . */ '</td><td class="table-league-score-highlight">' . $row['score'] . '</td>';
+    $out .= '<tr><td class="table-league-highlight">' . ($rk+1) . ". " . user_profile_link($row['kgsname']) . /* " (" . $row['uid'] . ')' . */ '</td><td class="table-league-score-highlight">' . $row['score'] . '</td>';
     foreach ($participants as $col) {
       $out .= '<td style="text-align: center;">' . visual_results_to_icons($row['visual'][strtolower($col['kgsname'])]) . '</td>';
     }
