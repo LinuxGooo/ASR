@@ -30,18 +30,19 @@ echo bootstrap_head("Advanced Study Room -- Games Archive");
     </div> <!-- col-md-1 -->
         <div class="col-md-10">
   <?php echo bootstrap_navbar('games'); ?>
-
         <!-- Jumbotron -->
         <div class="jumbotron well">
           <h1>The Archives</h1>
           <p>A database of the games played in the league. You can also upload games here if they are not found by the automatic match finder.</p>
         </div> <!-- /jumbotron -->
         <?php if (strlen($msg)>0) { echo '<div class="alert alert-success" role="alert">' . htmlentities($msg) . '</div>';} ?>
+<?php if ( is_user_logged_in() && current_user_can('asr_edit_events')) { ?>
         
         <h2>Add Game Records</h2>
           <form action="action.php" method="post" enctype="multipart/form-data"><table><tr><td><input type="hidden" name="action" value="upload_sgf"><input type="file" id="upload_sgf" name="upload_sgf"></td><td><button type="submit" role="button" class="btn btn-sm btn-success">Send</button></td></tr></table></form>
           </form>
         <br />
+<?php } ?>
         <h2>Records Archive</h2>
         <?php
           $games = DB::query("SELECT urlto,id,pstatus,data_key,player_white,player_black,date,place,type,result FROM sgf ORDER BY date LIMIT 10000;");
